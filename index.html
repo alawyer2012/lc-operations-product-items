@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LC Operations Items</title>
+    <meta
+      name="description"
+      content="Leasing Center operations items: current escalations and what is releasing."
+    />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%232a9d8f' rx='24' width='100' height='100'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <p class="eyebrow">Leasing Center</p>
+        <h1>Operations items</h1>
+      </div>
+      <div class="masthead__meta" id="masthead-meta"></div>
+    </header>
+
+    <nav class="tabs" aria-label="Operations sections">
+      <a class="tabs__link is-active" href="#escalations" data-tab="escalations">Escalations</a>
+      <a class="tabs__link" href="#releases" data-tab="releases">What’s releasing</a>
+    </nav>
+
+    <main id="main">
+      <section id="escalations" class="panel" data-panel="escalations">
+        <div class="filters" role="group" aria-label="Filter escalations">
+          <button type="button" class="chip" data-filter="p1">P1</button>
+          <button type="button" class="chip" data-filter="p2">P2</button>
+          <button type="button" class="chip is-active" data-filter="all">All tickets</button>
+        </div>
+        <div id="issue-board"></div>
+        <p class="empty" id="issue-empty" hidden>No items match this filter.</p>
+      </section>
+
+      <section id="releases" class="panel" data-panel="releases" hidden>
+        <div class="construction">
+          <div class="construction__art" aria-hidden="true">
+            <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="170" width="360" height="50" fill="#f0ddd0" />
+              <polygon class="cone cone--left" points="52,116 70,168 34,168" fill="#ee9b2d" />
+              <rect x="30" y="164" width="44" height="10" rx="3" fill="#2a2420" />
+              <rect class="cone cone--left" x="44" y="132" width="16" height="8" fill="#fff6ef" />
+              <polygon class="cone cone--right" points="308,116 326,168 290,168" fill="#e85d4c" />
+              <rect x="286" y="164" width="44" height="10" rx="3" fill="#2a2420" />
+              <rect class="cone cone--right" x="300" y="132" width="16" height="8" fill="#fff6ef" />
+              <rect x="108" y="70" width="144" height="100" rx="12" fill="#ffffff" />
+              <rect x="108" y="70" width="144" height="22" rx="12" fill="#2a9d8f" />
+              <rect x="108" y="84" width="144" height="8" fill="#2a9d8f" />
+              <rect x="124" y="104" width="40" height="28" rx="4" fill="#def6f1" />
+              <rect x="176" y="104" width="40" height="28" rx="4" fill="#ffe8e3" />
+              <rect x="228" y="104" width="8" height="66" fill="#d6c4b4" />
+              <rect x="116" y="148" width="128" height="8" fill="#d6c4b4" />
+              <rect x="116" y="132" width="128" height="6" fill="#ee9b2d" />
+              <rect x="116" y="138" width="16" height="6" fill="#2a2420" />
+              <rect x="148" y="138" width="16" height="6" fill="#2a2420" />
+              <rect x="180" y="138" width="16" height="6" fill="#2a2420" />
+              <rect x="212" y="138" width="16" height="6" fill="#2a2420" />
+              <circle cx="180" cy="48" r="18" fill="#ffd9bb" />
+              <path d="M168 42h24v8H168z" fill="#2a9d8f" />
+              <path d="M174 34h12l6 8H168z" fill="#ee9b2d" />
+            </svg>
+          </div>
+          <p class="construction__eyebrow">Under construction</p>
+          <h2>What’s releasing isn’t out yet</h2>
+          <p>
+            We’ll open this tab when we actually know what’s shipping — and what it does to the floor.
+          </p>
+          <p class="construction__aside">Until then, Cynthia is waiting on Austin. Again.</p>
+        </div>
+      </section>
+    </main>
+
+    <noscript>
+      <p class="noscript">JavaScript is required to render items from <code>data/dashboard.js</code>.</p>
+    </noscript>
+
+    <script src="data/dashboard.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
