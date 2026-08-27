@@ -33,15 +33,15 @@ window.DASHBOARD = {
       jiraKey: "",
       jiraUrl: "",
       openedOn: "2026-08-26",
-      lastUpdate: "2026-08-26",
+      lastUpdate: "2026-08-27",
       source: "#askvoip",
       opsImpact:
         "Agents can quote a doubled price after adding occupants. Wrong quotes hit the prospect immediately and erode trust in the calculator.",
       workaround: "Unconfirmed. Do not treat calculator output as final until a workaround is documented from #askvoip.",
-      nextAction: "Pull repro details from #askvoip and open a Jira ticket.",
+      nextAction: "Open the Jira ticket today.",
       nextActionOwner: "Product",
       latestNote:
-        "Waiting on ticket and details. Cynthia’s outstanding list may add volume, sites, or a cleaner repro.",
+        "Still no ticket. Today’s job is to file it so ops can track it in Jira.",
     },
     {
       id: "holiday-hours-dashboard",
@@ -97,6 +97,24 @@ window.DASHBOARD = {
       nextActionOwner: "Product",
       latestNote:
         "Older ticket number than holiday hours — likely aging. Confirm it is still open and still the complaint ops is feeling.",
+    },
+    {
+      id: "notification-line-transcriptions",
+      title: "Notification line transcriptions and summaries",
+      area: "Call transcription",
+      severity: "p2",
+      status: "waiting-on-ticket",
+      jiraKey: "",
+      jiraUrl: "",
+      openedOn: "2026-08-27",
+      lastUpdate: "2026-08-27",
+      source: "ask channel",
+      opsImpact:
+        "Notification-line calls may not get a usable transcription or summary. Agents lose the write-up they rely on after the call.",
+      workaround: "Unconfirmed — pull the current floor workaround from the ask channel.",
+      nextAction: "Check the ask channel today for the latest complaint, then open or attach a Jira ticket.",
+      nextActionOwner: "Product",
+      latestNote: "On today’s list. Details still live in the ask channel — not on this board yet.",
     },
   ],
 
