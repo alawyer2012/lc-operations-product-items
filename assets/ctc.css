@@ -1,0 +1,282 @@
+.ctc {
+  --max: 920px;
+}
+
+.ctc-main {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto 64px;
+  padding-top: 8px;
+}
+
+.lede {
+  margin: 0 0 24px;
+  max-width: 68ch;
+  color: var(--ink-soft);
+  font-size: 17px;
+}
+
+.ctc h2 {
+  margin: 36px 0 10px;
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.4vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.ctc h3 {
+  margin: 22px 0 8px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.ctc-main > section > p,
+.need p,
+details p {
+  margin: 0 0 12px;
+  max-width: 70ch;
+}
+
+.callout {
+  margin: 0 0 22px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border-left: 8px solid var(--p2);
+  background: var(--p2-soft);
+}
+
+.callout--danger {
+  border-left-color: var(--p1);
+  background: var(--p1-soft);
+}
+
+.callout--ok {
+  border-left-color: var(--ok);
+  background: var(--p3-soft);
+}
+
+.callout p {
+  margin: 0;
+  max-width: none;
+}
+
+.callout__label {
+  margin-bottom: 6px !important;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 28px;
+}
+
+.stat {
+  padding: 16px 16px 14px;
+  background: var(--paper-2);
+  border-radius: 16px;
+}
+
+.stat__value {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(26px, 3vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.stat__label {
+  margin: 6px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.formula {
+  margin: 12px 0 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 20px;
+  background: var(--paper-2);
+  border-radius: 16px;
+}
+
+.ctc table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.ctc caption {
+  padding: 14px 16px 4px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.ctc th,
+.ctc td {
+  padding: 10px 14px;
+  border-top: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.ctc th {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.ctc tbody tr:nth-child(even) {
+  background: #fffaf6;
+}
+
+.row-warn td:first-child,
+.row-bad td:first-child {
+  font-weight: 800;
+}
+
+.row-warn {
+  background: var(--p2-soft) !important;
+}
+
+.row-bad {
+  background: var(--p1-soft) !important;
+}
+
+.caption,
+.scenario-why,
+.footnote {
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.ramp,
+.bars {
+  display: grid;
+  gap: 10px;
+  margin: 8px 0 20px;
+}
+
+.ramp__row,
+.bars__row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr) 52px;
+  gap: 10px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ramp__track,
+.bars__track {
+  height: 14px;
+  overflow: hidden;
+  background: #ffe8d6;
+  border-radius: 999px;
+}
+
+.ramp__track i,
+.bars__track i {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.bars__track i.is-warn {
+  background: var(--p2);
+}
+
+.ramp__row b,
+.bars__row b {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ctc .filters {
+  margin: 8px 0 16px;
+}
+
+.ctc details {
+  margin: 0 0 10px;
+  padding: 4px 16px 12px;
+  background: var(--paper-2);
+  border-radius: 16px;
+}
+
+.ctc summary {
+  padding: 12px 0;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.need {
+  margin: 0 0 12px;
+  padding: 16px 18px;
+  background: var(--paper-2);
+  border-radius: 16px;
+}
+
+.need h3 {
+  margin: 0 0 8px;
+}
+
+.align {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.align li {
+  margin: 0 0 10px;
+  max-width: 70ch;
+}
+
+.footnote {
+  margin-top: 28px;
+}
+
+.ctc tr.is-active td {
+  background: var(--accent-soft);
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ramp__row,
+  .bars__row {
+    grid-template-columns: 88px minmax(0, 1fr) 44px;
+  }
+}
+
+@media print {
+  .ctc .filters {
+    display: flex !important;
+  }
+
+  .ctc details {
+    break-inside: avoid;
+  }
+
+  .ctc details[open] p {
+    display: block;
+  }
+}

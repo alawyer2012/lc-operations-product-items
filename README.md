@@ -42,11 +42,15 @@ python3 -m http.server 4173
 
 Then open http://localhost:4173
 
+**Click-to-call outbound estimate** (internal costing brief, not the ops board): http://localhost:4173/ctc-outbound/
+
 ## Publish on GitHub Pages
 
 1. Create a GitHub repo and push this project.
 2. Settings → Pages → Deploy from branch → `main` / root (`/`).
 3. Share the Pages URL with operations. Prefer a **private** repo if the org allows Pages on private repositories — this board will carry ticket titles and floor complaints.
+
+The CTC outbound costing brief publishes at `ctc-outbound/` on the same Pages site (separate from the ops board).
 
 ## Out of scope (for now)
 

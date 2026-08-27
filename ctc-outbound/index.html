@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Click-to-call outbound estimate — Entrata cost review</title>
+    <meta
+      name="description"
+      content="Internal review of click-to-call outbound volume assumptions and what that traffic would cost on Entrata."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%232a9d8f' rx='24' width='100' height='100'/></svg>"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <link rel="stylesheet" href="../assets/ctc.css" />
+  </head>
+  <body class="ctc">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="masthead">
+      <div class="masthead__brand">
+        <p class="eyebrow">ELI Call Tracking · internal</p>
+        <h1>Click-to-call outbound estimate</h1>
+      </div>
+      <div class="masthead__meta">Reviewed Aug 27, 2026</div>
+    </header>
+
+    <main id="main" class="ctc-main">
+      <p class="lede">
+        Ryan asked for better data on outbound click-to-call volume for leasing
+        offices — current estimates are a focal point for ELI Call Tracking
+        plans, and he is not confident in them. Jacob pointed at Leasing Center
+        recordings, with the requirement that inbound and outbound be split
+        (Austin’s last pull was not). This page reviews the two costing
+        workbooks against that ask, then costs the traffic on Entrata.
+      </p>
+
+      <aside class="callout callout--warn" role="note">
+        <p class="callout__label">Working conclusion</p>
+        <p>
+          The published CTC forecast is <strong>not measured traffic</strong>.
+          Entrata Volumes (315k minutes in Q2 2026 → 6.52M in Q4 2027) rebuilds
+          exactly from four hardcoded inputs: 10,000 units in June 2026, 12%
+          month-over-month growth, <strong>31.5 outbound minutes per unit per
+          month</strong>, and 1 vanity number per 120-unit property. Those
+          minutes come from 18 calls/day × 7 minutes × 30 days ÷ 120 units —
+          not from LC CDRs or a cleaned PMC sample.
+        </p>
+      </aside>
+
+      <section class="stats" aria-label="Headline numbers">
+        <article class="stat">
+          <p class="stat__value">16.8M</p>
+          <p class="stat__label">2027 CTC minutes in the sheet</p>
+        </article>
+        <article class="stat">
+          <p class="stat__value">$169k</p>
+          <p class="stat__label">2027 Twilio voice + 1 DID (sheet)</p>
+        </article>
+        <article class="stat">
+          <p class="stat__value">3×</p>
+          <p class="stat__label">Sheet vs repaired PMC min/unit</p>
+        </article>
+        <article class="stat">
+          <p class="stat__value">$21k–$623k</p>
+          <p class="stat__label">2027 Entrata cost range, same ramp</p>
+        </article>
+      </section>
+
+      <section>
+        <h2>How the sheet number is built</h2>
+        <p>
+          Minutes per unit is the whole game. Adoption only scales it. The
+          identity in Overall / Ryan C MASTER / Entrata Volumes is:
+        </p>
+        <p class="formula">
+          monthly minutes = units × 0.15 outbound calls/unit/day × 7 min × 30 days
+        </p>
+        <p>
+          That is 18 outbound calls per day on a 120-unit property. 18 × 7 × 30 /
+          120 = <strong>31.5 min/unit/month</strong>. Vanity count = units / 120.
+          Q2 2026 is only June (10,000 × 31.5 = 315,000). After that, units
+          compound at 1.12× per month. The ramp matches Entrata Volumes to the
+          integer.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>
+              Drivers behind Entrata Volumes — none of the intensity inputs are
+              measured CTC
+            </caption>
+            <thead>
+              <tr>
+                <th>Lever</th>
+                <th>Sheet value</th>
+                <th>Empirical basis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Outbound calls / unit / day</td>
+                <td>0.15</td>
+                <td>Hardcoded. Not from Average Calls.</td>
+              </tr>
+              <tr>
+                <td>Average talk time</td>
+                <td>7.0 min</td>
+                <td>Above every completed PMC except Cottonwood (8 min).</td>
+              </tr>
+              <tr>
+                <td>Days / month</td>
+                <td>30</td>
+                <td>Calendar month. Offices are closer to 22 business days.</td>
+              </tr>
+              <tr>
+                <td>Units / property</td>
+                <td>120</td>
+                <td>Below Westover (~170–217) and the PMC sample (200–300).</td>
+              </tr>
+              <tr>
+                <td>Numbers / property</td>
+                <td>1 vs 5 vs 10</td>
+                <td>Overall uses 1; Ryan C Summary uses 5; WebRTC/Chime models use 10.</td>
+              </tr>
+              <tr>
+                <td>Launch units</td>
+                <td>10,000 in Jun 2026</td>
+                <td>~83 properties. No named PMCs, attach rate, or impl. capacity.</td>
+              </tr>
+              <tr>
+                <td>Growth</td>
+                <td>12% MoM (~290% annualized)</td>
+                <td>Sibling sheet adds a flat 10k units/month instead.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Unit ramp baked into the forecast</h3>
+        <p class="caption">
+          10,000 units in June 2026, then 12% month-over-month. Source:
+          reconstructed from Ryan C MASTER · matches Entrata Volumes minutes.
+        </p>
+        <div class="ramp" role="img" aria-label="Units on CTC from June 2026 to December 2027">
+          <div class="ramp__row">
+            <span>Jun 26</span>
+            <div class="ramp__track"><i style="width: 13%"></i></div>
+            <b>10k</b>
+          </div>
+          <div class="ramp__row">
+            <span>Dec 26</span>
+            <div class="ramp__track"><i style="width: 26%"></i></div>
+            <b>20k</b>
+          </div>
+          <div class="ramp__row">
+            <span>Jun 27</span>
+            <div class="ramp__track"><i style="width: 51%"></i></div>
+            <b>39k</b>
+          </div>
+          <div class="ramp__row">
+            <span>Dec 27</span>
+            <div class="ramp__track"><i style="width: 100%"></i></div>
+            <b>77k</b>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Entrata Volumes — click-to-call outbound minutes and vanity numbers</caption>
+            <thead>
+              <tr>
+                <th>Quarter</th>
+                <th>Outbound minutes</th>
+                <th>Vanity numbers (end of quarter)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Q2 2026</td><td>315,000</td><td>83</td></tr>
+              <tr><td>Q3 2026</td><td>1,190,488</td><td>117</td></tr>
+              <tr><td>Q4 2026</td><td>1,672,550</td><td>164</td></tr>
+              <tr><td>Q1 2027</td><td>2,349,813</td><td>231</td></tr>
+              <tr><td>Q2 2027</td><td>3,301,318</td><td>324</td></tr>
+              <tr><td>Q3 2027</td><td>4,638,114</td><td>456</td></tr>
+              <tr><td>Q4 2027</td><td>6,516,216</td><td>640</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>What the “real” call data actually shows</h2>
+        <p>
+          Average Calls is the only empirical outbound sample, and it is not a
+          CTC sample. It is a mix of PMC office-phone systems, one diluted
+          Westover extract, and Leasing Center totals. Four of eight named PMCs
+          are empty (AMLI, Hines, SimplyHome, Catalyst).
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Outbound intensity vs the sheet model</caption>
+            <thead>
+              <tr>
+                <th>Source</th>
+                <th>What was counted</th>
+                <th>Out min / unit / mo</th>
+                <th>AHT</th>
+                <th>Out share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="row-warn">
+                <td>Sheet model</td>
+                <td>Assumed CTC</td>
+                <td>31.5</td>
+                <td>7.0</td>
+                <td>100% of model</td>
+              </tr>
+              <tr>
+                <td>Cottonwood</td>
+                <td>Courtesy Connection, 1 property / 295 units</td>
+                <td>20.3</td>
+                <td>8.0</td>
+                <td>63%</td>
+              </tr>
+              <tr>
+                <td>PAC</td>
+                <td>Funnel, 1 property / 300 units</td>
+                <td>15.0</td>
+                <td>5.0</td>
+                <td>59%</td>
+              </tr>
+              <tr class="row-bad">
+                <td>Westover as entered</td>
+                <td>20-property calls ÷ 75 properties (broken)</td>
+                <td>2.0</td>
+                <td>3.0</td>
+                <td>2.5% (artifact)</td>
+              </tr>
+              <tr>
+                <td>Westover repaired</td>
+                <td>20 props / 4,347 units / 6 months / 50,978 outbound</td>
+                <td>5.9</td>
+                <td>&lt;3</td>
+                <td>66%</td>
+              </tr>
+              <tr>
+                <td>Trinity</td>
+                <td>Zoom, 1 property / 200 units</td>
+                <td>3.5</td>
+                <td>2.3</td>
+                <td>60%</td>
+              </tr>
+              <tr>
+                <td>Leasing Center</td>
+                <td>400k outbound + 2.0M inbound on 450k units (annual)</td>
+                <td>0.30</td>
+                <td>4.0</td>
+                <td>17%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Outbound minutes per unit vs the sheet</h3>
+        <p class="caption">
+          Source: Average Calls + Calculate Westover + Overall C18 · mixed 2024
+          PMC windows
+        </p>
+        <div class="bars" role="img" aria-label="Outbound minutes per unit per month by source">
+          <div class="bars__row">
+            <span>Sheet</span>
+            <div class="bars__track"><i class="is-warn" style="width: 100%"></i></div>
+            <b>31.5</b>
+          </div>
+          <div class="bars__row">
+            <span>Cottonwood</span>
+            <div class="bars__track"><i style="width: 65%"></i></div>
+            <b>20.3</b>
+          </div>
+          <div class="bars__row">
+            <span>PAC</span>
+            <div class="bars__track"><i style="width: 48%"></i></div>
+            <b>15.0</b>
+          </div>
+          <div class="bars__row">
+            <span>Westover true</span>
+            <div class="bars__track"><i style="width: 19%"></i></div>
+            <b>5.9</b>
+          </div>
+          <div class="bars__row">
+            <span>Trinity</span>
+            <div class="bars__track"><i style="width: 11%"></i></div>
+            <b>3.5</b>
+          </div>
+          <div class="bars__row">
+            <span>LC outbound</span>
+            <div class="bars__track"><i style="width: 1%"></i></div>
+            <b>0.3</b>
+          </div>
+        </div>
+
+        <aside class="callout callout--danger" role="note">
+          <p class="callout__label">Westover was diluted by ~3.8×, then averaged in</p>
+          <p>
+            Mary Rose’s usable fact: 1/2/2024–6/28/2024, 20 properties, 77,610
+            calls, 50,978 outbound, 26,632 inbound, AHT under 3 minutes. Average
+            Calls then divides outbound by 75 Salesforce properties and leaves
+            inbound undivided at 4,439. That makes Westover look 97.5% inbound
+            and 2.0 outbound min/unit. Repaired, it is 66% outbound and 5.9
+            min/unit — still nowhere near 31.5.
+          </p>
+        </aside>
+
+        <aside class="callout callout--warn" role="note">
+          <p class="callout__label">In vs out labels are swapped</p>
+          <p>
+            Column L is titled “% Inbound” but computes outbound share. Column O
+            is titled “% Outbound” but computes inbound share. The PMC average
+            row happens to use the values correctly. The LC average row does
+            not: it reports LC as 83% outbound and 17% inbound — the reverse of
+            reality. Using undifferentiated LC or Call Tracking minutes as a CTC
+            proxy is the failure Ryan called out. 2024 property Call Tracking is
+            19.3M calls at 2.24 min AHT — inbound ILS pattern, not office
+            click-to-call.
+          </p>
+        </aside>
+      </section>
+
+      <section>
+        <h2>Cost on Entrata — same adoption ramp, different intensity</h2>
+        <p>
+          Adoption is held fixed (10k units in Jun 2026, 12% MoM) so the
+          comparison isolates traffic and rate. Vanity is 1 DID per property at
+          Twilio current $0.575/mo (~$2.6k in 2027). Conversation minutes, not
+          billed legs: Twilio CTC is two PSTN legs ($0.00495 × 2 = $0.0099). AWS
+          is telephony + platform with a 12.5% EDS discount, not doubled.
+        </p>
+
+        <div class="filters" role="group" aria-label="2027 cost scenario">
+          <button type="button" class="chip is-active" data-scenario="sheet">Sheet model</button>
+          <button type="button" class="chip" data-scenario="cottonwood">Cottonwood-like</button>
+          <button type="button" class="chip" data-scenario="pmc">PMC mix (repaired)</button>
+          <button type="button" class="chip" data-scenario="trinity">Trinity-like</button>
+          <button type="button" class="chip" data-scenario="sip">Sheet + SIP</button>
+          <button type="button" class="chip" data-scenario="trans">Sheet + transcription</button>
+          <button type="button" class="chip" data-scenario="aws">Sheet on AWS</button>
+        </div>
+
+        <div id="scenario-stats" class="stats stats--live" aria-live="polite"></div>
+        <p id="scenario-why" class="scenario-why"></p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>2027 Entrata COGS on the sheet adoption ramp</caption>
+            <thead>
+              <tr>
+                <th>Scenario</th>
+                <th>Min/unit</th>
+                <th>Minutes</th>
+                <th>Voice COGS</th>
+                <th>Total w/ DIDs</th>
+              </tr>
+            </thead>
+            <tbody id="scenario-table"></tbody>
+          </table>
+        </div>
+        <p class="caption">
+          If AWS telephony is also two legs, 2027 on the sheet ramp is ~$408k
+          not $338k. Ryan C MASTER applies Twilio transcription at $0.027/min to
+          outbound CTC — that line alone is ~$454k on the sheet minutes.
+        </p>
+      </section>
+
+      <section>
+        <h2>Risks that will move the estimate</h2>
+
+        <details open>
+          <summary>Product definition — PBX outbound is not click-to-call</summary>
+          <p>
+            CTC for ELI is an agent clicking a guest card. Average Calls is
+            office-phone outbound: prospect follow-up, resident calls, vendors,
+            transfers of inbound callers, and whatever “Courtesy Connection” and
+            Funnel count as an outbound leg. Westover outbound being 66% of all
+            office calls is a PBX mix, not a CRM-click mix. If only a fraction
+            of outbound is prospect CTC, intensity falls again from the PMC
+            figures — toward LC’s 0.30 min/unit, not toward 31.5.
+          </p>
+          <p>
+            Twilio Potential Mins labels the same series “Click To Call / Queue
+            Calling (All Minutes).” Queue calling is a different architecture
+            (often inbound + conference). If 31.5 was meant to cover both, the
+            Entrata Volumes tab is mislabeled. If it was meant as CTC only,
+            queue calling is missing.
+          </p>
+        </details>
+
+        <details>
+          <summary>Leasing Center and 2024 Call Tracking cannot be used raw</summary>
+          <p>
+            Jacob is right that LC has recordings and duration. Ryan is right
+            that direction was missing last time. 2024 LC: 2.16M calls, 9.37M
+            minutes, 4.33 min AHT. Property Call Tracking: 19.3M calls, 43.4M
+            minutes, 2.24 min AHT (inbound ILS). The Twilio mins sheet then puts
+            9,365,748 LC minutes into each 2027 quarter after a half-quarter
+            start — that is the 2024 annual total, reused as a quarterly run
+            rate (~4×). Call Tracking migration is a separate (and currently
+            broken) volume, not a CTC proof point.
+          </p>
+          <p>
+            LC is also 83% inbound. On-site CTC is outbound. Centralized agents
+            will not match on-site leasing-office behavior. Use LC only as a
+            direction-split, unit-normalized outbound series for
+            agent-originated prospect calls.
+          </p>
+        </details>
+
+        <details>
+          <summary>Two-leg billing, SIP, and “Total Per Min” unit errors</summary>
+          <p>
+            Click-to-call usually places two calls: agent and prospect. The
+            Twilio calculator correctly ×2s PSTN. Overall’s Twilio outbound rate
+            of $0.0099 is already 2 × $0.00495. AWS is entered as one telephony
+            minute plus platform and is not doubled. Overall then sums vanity
+            $/month into “Total Per Min,” producing $0.807 for AWS and $0.585
+            for Twilio — those totals are not per-minute rates and should not be
+            used in a cost model.
+          </p>
+          <p>
+            Architecture is a first-class volume question: a WebRTC/softphone
+            leg to the agent replaces one PSTN leg. That is a 10–40% COGS swing
+            before intensity moves.
+          </p>
+        </details>
+
+        <details>
+          <summary>Transcription is a bigger cost lever than DID count</summary>
+          <p>
+            Ryan C Summary prices inbound transcription at $0.20/hour
+            ($0.0033/min) and keeps it off outbound. Ryan C MASTER marks Twilio
+            transcription $0.027/min and applies it to outbound CTC, taking unit
+            COGS from ~$0.32 to ~$1.17 and the 60% margin price from ~$0.79 to
+            ~$2.92. Call Tracker+ is still shown at $0.75. If ELI Call Tracking
+            plans include recording, summaries, and scoring on CTC, the $169k
+            voice bill is the wrong conversation.
+          </p>
+        </details>
+
+        <details>
+          <summary>Adoption ramp is unanchored, and Twilio terms in the workbook are expired</summary>
+          <p>
+            10,000 units in June 2026 is ~83 properties. 12% MoM is ~39k units
+            by June 2027 and ~77k by December 2027 (~641 properties). There is
+            no seasonality, despite 2024 property calls peaking in Q3 at 1.43×
+            Q4. There is no attach rate to existing Call Tracker (21,161
+            Veracity+Twilio numbers; 77,967 total tracking numbers).
+          </p>
+          <p>
+            TWILIO tab: draft sent 10/16/25, expired 11/15/25, estimated launch
+            12/1/25, $2M year-1 and $2.5M year-2 annual commitment on entire
+            Twilio spend. Entrata’s existing Twilio bill in the sheet is
+            SMS-heavy (Nov 2025 × 12 ≈ $1.09M SMS). Voice CTC at sheet scale is
+            small relative to that commit; voice + the 4×-inflated Call Tracking
+            migration figure is not. Entrata “Total Calls” is a dash — we do
+            not have a current Entrata voice baseline. The calculator’s 1M CTC
+            calls is a vendor placeholder, not this forecast.
+          </p>
+        </details>
+      </section>
+
+      <section>
+        <h2>What we need before this estimate is usable</h2>
+        <p>
+          Three independent numbers, then a rate card. Do not average them until
+          each is direction-split and use-case-split.
+        </p>
+
+        <article class="need">
+          <h3>1. Austin / LC CDRs</h3>
+          <p>
+            Monthly, 24+ months, property-level: direction, who originated
+            (prospect / LC agent / on-site), whether the tracking DID was used
+            as outbound CID, talk time vs billed time, answer vs attempt, IVR
+            time excluded, unit count on that date. Filter to agent-originated
+            prospect calls. If outbound CID is not the tracking number, LC will
+            undercount on-site CTC — say so explicitly rather than treating
+            silence as zero.
+          </p>
+        </article>
+        <article class="need">
+          <h3>2. On-site office telephony, repaired</h3>
+          <p>
+            Finish AMLI, Hines, SimplyHome, Catalyst. For each property: units,
+            business days, outbound attempts vs answered, and a split of
+            outbound into prospect / resident / vendor / transfer. Confirm
+            whether Cottonwood Courtesy Connection is guest-card click-to-call.
+            Rebuild Westover on the 20-property extract (or the full residential
+            list) without mixing denominators. Prefer medians over means;
+            Cottonwood at 20.3 and Trinity at 3.45 should not be averaged into a
+            fake “typical.”
+          </p>
+        </article>
+        <article class="need">
+          <h3>3. Adoption, architecture, SKU</h3>
+          <p>
+            Named 10k-unit beachhead or replace it with a bookings funnel.
+            Attach rate to existing Call Tracker vs net-new. Implementation
+            properties/month. CTC vs queue vs softphone: how many PSTN legs,
+            recording on or off, transcription on or off. DID policy (1 vs 5 vs
+            10). Which Twilio rates are actually in force in 2026. US-only vs
+            Canada/international. Whether failed/short calls bill a full minute.
+            Seasonality from 2024 Q3 peak should be in the quarterly shape even
+            if the annual total is held.
+          </p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Decisions before we re-forecast</h2>
+        <ol class="align">
+          <li>Define the traffic: guest-card CTC only, all on-site outbound, or CTC + queue calling?</li>
+          <li>Until Austin’s split lands, treat 31.5 min/unit as a high case, not the base. Base should sit nearer 6–15 unless we prove Cottonwood-like CTC.</li>
+          <li>Ask Austin for direction + originator + CID + duration at property-month grain. Do not accept another undifferentiated minute dump.</li>
+          <li>Lock Westover: 20-property subset vs 75 residential vs 83 Salesforce rows.</li>
+          <li>Lock architecture: 2 PSTN vs PSTN+SIP vs WebRTC. Cost AWS and Twilio on the same leg count.</li>
+          <li>Lock ELI plan contents. If transcription/summaries ride on CTC minutes, they dwarf DID and possibly voice.</li>
+          <li>Replace 12% MoM with a bookings/impl. capacity curve, or keep it only as an upside case. Add leasing seasonality.</li>
+          <li>Confirm whether the Oct 2025 Twilio draft is live. Do not size a $2M commit off placeholder 1M CTC calls.</li>
+        </ol>
+      </section>
+
+      <aside class="callout callout--ok" role="note">
+        <p class="callout__label">Recommendation</p>
+        <p>
+          Do not take 16.8M minutes / $169k as the CTC cost on Entrata. Take it
+          as the high, fully-ramped, long-call, 2-leg case. A repaired-PMC base
+          on the same adoption ramp is about <strong>6.0M minutes and ~$62k</strong>
+          Twilio voice+DID in 2027. A Cottonwood-like case is ~10.9M / ~$110k.
+          A transcription-included ELI SKU on the sheet ramp is ~$623k. The
+          spread is the estimate. Closing it requires Austin’s inbound/outbound
+          split and a one-line product definition of what “click to call”
+          includes.
+        </p>
+      </aside>
+
+      <p class="footnote">
+        Sources: <em>Overall CTC_ Twilio and Amazon Rates.xlsx</em> and
+        <em>Calling Functionality with Abe (1).xlsx</em>. Ryan Curtis / Jacob
+        Jones thread on outbound CTC for ELI Call Tracking. Prepared Aug 27,
+        2026. Internal — not a customer-facing document.
+      </p>
+    </main>
+
+    <script src="../assets/ctc.js"></script>
+  </body>
+</html>
