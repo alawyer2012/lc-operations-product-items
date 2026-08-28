@@ -130,15 +130,19 @@ window.DASHBOARD = {
       source: "Known (PM)",
       opsImpact:
         "Managers cannot log a Call Review from Interaction Tracker. Coaching notes and QA follow-up on that agent stall until the error is cleared.",
-      workaround: "Unconfirmed. Capture the live error and current floor workaround in today’s meeting.",
-      nextAction: "Confirm repro (agent profile → create Call Review), attach screenshots, then open Jira.",
-      nextActionOwner: "Product + Ops",
+      workaround: "Unconfirmed. Other interaction types (One on One, Touchpoint, etc.) still appear available from the same New Interaction menu.",
+      nextAction: "Open Jira with these screenshots. Confirm why Call Review’s 8-week graded-call query is empty while the same profile still shows QA scores.",
+      nextActionOwner: "Product + Eng",
       latestNote:
-        "On the board for today’s follow-up. Screenshots pending. First look: Call Review is interaction type 3; create fails if the type id does not load, or if the agent has no graded calls in the last 8 weeks. Older related ticket DEV-295896 is a 500 on opening Interaction Tracker — confirm whether this is the same failure or a Call Review–only error.",
+        "Repro confirmed on Alexis Moore’s profile (Interaction Tracker → New Interaction → Call Review). Exact error: “No graded calls found in last 8 weeks.” The profile still shows QA Fundamentals 98% and QA Quality of Interaction 99%, so Call Review is looking at a different (or empty) graded-call set than the goals cards. Not the same as DEV-295896 (500 on opening Interaction Tracker).",
       screenshots: [
         {
-          src: "",
-          caption: "Placeholder — screenshots to attach after this meeting",
+          src: "assets/screenshots/call-review-new-interaction-menu.png",
+          caption: "New Interaction → Call Review on the agent profile",
+        },
+        {
+          src: "assets/screenshots/call-review-error-no-graded-calls.png",
+          caption: "Error after selecting Call Review: No graded calls found in last 8 weeks",
         },
       ],
     },
@@ -151,7 +155,8 @@ window.DASHBOARD = {
       date: "2026-08-28",
       weekOf: "2026-08-25",
       entries: [
-        "Added Interaction Tracker — Call Review type error with a screenshot placeholder for today’s ops follow-up.",
+        "Added Interaction Tracker — Call Review type error for today’s ops follow-up.",
+        "Attached Call Review screenshots (New Interaction menu + “No graded calls found in last 8 weeks”).",
       ],
     },
     {

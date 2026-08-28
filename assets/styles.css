@@ -360,7 +360,8 @@ h1 {
 
 .shot {
   margin: 0;
-  width: min(280px, 100%);
+  flex: 1 1 320px;
+  max-width: 100%;
 }
 
 .shot img {
