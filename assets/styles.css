@@ -348,6 +348,48 @@ h1 {
   margin: 0;
 }
 
+.issue__shots {
+  grid-column: 1 / -1;
+}
+
+.shot-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.shot {
+  margin: 0;
+  width: min(280px, 100%);
+}
+
+.shot img {
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.shot__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 140px;
+  border: 2px dashed #d6c4b4;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.shot figcaption {
+  margin-top: 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .next-action {
   grid-column: 1 / -1;
   padding: 12px 14px;

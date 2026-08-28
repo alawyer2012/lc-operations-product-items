@@ -107,6 +107,58 @@
     );
   }
 
+  function screenshotHint(issue) {
+    if (!Array.isArray(issue.screenshots)) return "";
+    const pending = !issue.screenshots.length || issue.screenshots.some(function (shot) {
+      return !shot || !shot.src;
+    });
+    return pending ? " · Screenshots pending" : "";
+  }
+
+  function renderScreenshots(issue) {
+    if (!Array.isArray(issue.screenshots)) return "";
+    const shots = issue.screenshots.length
+      ? issue.screenshots
+      : [{ src: "", caption: "Screenshot pending" }];
+    const items = shots
+      .map(function (shot) {
+        const caption = (shot && shot.caption) || "Screenshot pending";
+        const src = shot && shot.src;
+        if (src) {
+          return (
+            "<figure class='shot'>" +
+            "<a href='" +
+            escapeHtml(src) +
+            "' target='_blank' rel='noopener noreferrer'>" +
+            "<img src='" +
+            escapeHtml(src) +
+            "' alt='" +
+            escapeHtml(caption) +
+            "' />" +
+            "</a>" +
+            "<figcaption>" +
+            escapeHtml(caption) +
+            "</figcaption>" +
+            "</figure>"
+          );
+        }
+        return (
+          "<figure class='shot shot--placeholder'>" +
+          "<div class='shot__box' aria-hidden='true'>Screenshot pending</div>" +
+          "<figcaption>" +
+          escapeHtml(caption) +
+          "</figcaption>" +
+          "</figure>"
+        );
+      })
+      .join("");
+    return (
+      "<div class='issue__shots'><h3>Screenshots</h3><div class='shot-row'>" +
+      items +
+      "</div></div>"
+    );
+  }
+
   function renderIssue(issue) {
     const open = !!state.openIds[issue.id];
     const age = daysBetween(issue.openedOn);
@@ -133,6 +185,7 @@
       escapeHtml(issue.area) +
       " · " +
       escapeHtml(issue.source) +
+      screenshotHint(issue) +
       "</p></span>" +
       "</button>" +
       jiraLink(issue, "No ticket") +
@@ -165,6 +218,7 @@
           " <span class='issue__meta'>(" +
           escapeHtml(formatDate(issue.lastUpdate)) +
           ")</span></p></div>" +
+          renderScreenshots(issue) +
           "<div class='next-action'><h3>Next action · " +
           escapeHtml(issue.nextActionOwner) +
           "</h3><p>" +

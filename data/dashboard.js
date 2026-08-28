@@ -8,6 +8,7 @@
  * Release window:   this-week | next | later | shipped
  * Release status:   draft | scheduled | in-qa | at-risk | shipped
  * Ops impact level: none | awareness | training | workflow-change
+ * Screenshots:      optional [{ src, caption }]. Empty src renders a placeholder.
  */
 
 window.DASHBOARD = {
@@ -15,12 +16,12 @@ window.DASHBOARD = {
     product: "Leasing Center",
     owner: "Product",
     opsPartner: "Cynthia, Operations",
-    lastUpdated: "2026-08-27",
+    lastUpdated: "2026-08-28",
     weekOf: "2026-08-25",
     nextReview: "2026-09-02",
     slackChannel: "#askvoip",
     briefingNote:
-      "First standing briefing. Four known escalations are on the board while we wait on Cynthia’s outstanding list — that list becomes the source of truth for anything we are missing. Two items still need tickets: TMLP calculator (price doubling) and guest-card auto-populate. Holiday hours and office-hours customer text already have Jira.",
+      "Added Interaction Tracker — Call Review type error ahead of today’s ops follow-up. Screenshots are still a placeholder. Two items still need tickets from earlier: TMLP calculator and guest-card auto-populate.",
   },
 
   issues: [
@@ -116,11 +117,43 @@ window.DASHBOARD = {
       nextActionOwner: "Product",
       latestNote: "On today’s list. Details still live in the ask channel — not on this board yet.",
     },
+    {
+      id: "interaction-tracker-call-review-type-error",
+      title: "Interaction Tracker — Call Review type error",
+      area: "Interaction Tracker",
+      severity: "p2",
+      status: "waiting-on-ticket",
+      jiraKey: "",
+      jiraUrl: "",
+      openedOn: "2026-08-28",
+      lastUpdate: "2026-08-28",
+      source: "Known (PM)",
+      opsImpact:
+        "Managers cannot log a Call Review from Interaction Tracker. Coaching notes and QA follow-up on that agent stall until the error is cleared.",
+      workaround: "Unconfirmed. Capture the live error and current floor workaround in today’s meeting.",
+      nextAction: "Confirm repro (agent profile → create Call Review), attach screenshots, then open Jira.",
+      nextActionOwner: "Product + Ops",
+      latestNote:
+        "On the board for today’s follow-up. Screenshots pending. First look: Call Review is interaction type 3; create fails if the type id does not load, or if the agent has no graded calls in the last 8 weeks. Older related ticket DEV-295896 is a 500 on opening Interaction Tracker — confirm whether this is the same failure or a Call Review–only error.",
+      screenshots: [
+        {
+          src: "",
+          caption: "Placeholder — screenshots to attach after this meeting",
+        },
+      ],
+    },
   ],
 
   releases: [],
 
   changelog: [
+    {
+      date: "2026-08-28",
+      weekOf: "2026-08-25",
+      entries: [
+        "Added Interaction Tracker — Call Review type error with a screenshot placeholder for today’s ops follow-up.",
+      ],
+    },
     {
       date: "2026-08-26",
       weekOf: "2026-08-25",
