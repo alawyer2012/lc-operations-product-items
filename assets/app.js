@@ -28,6 +28,26 @@
     monitoring: "badge--status",
     resolved: "badge--resolved",
   };
+  const IMPACT_LABEL = {
+    none: "None",
+    awareness: "Awareness",
+    training: "Training",
+    "workflow-change": "Workflow change",
+  };
+  const WINDOW_LABEL = {
+    "this-week": "This week",
+    next: "Next",
+    later: "Later",
+    shipped: "Shipped",
+  };
+  const RELEASE_STATUS_LABEL = {
+    draft: "Draft",
+    scheduled: "Scheduled",
+    "in-qa": "In QA",
+    "at-risk": "At risk",
+    shipped: "Shipped",
+  };
+  const JIRA_RELEASING_URL = "https://entrata.atlassian.net/jira/dashboards/16707";
 
   const state = {
     tab: "escalations",
@@ -236,6 +256,54 @@
     document.getElementById("issue-empty").hidden = issues.length > 0;
   }
 
+  function renderReleaseBanner() {
+    const banner = document.getElementById("jira-releasing-banner");
+    if (!banner) return;
+    const href = data.meta.jiraReleasingDashboardUrl || JIRA_RELEASING_URL;
+    banner.href = href;
+  }
+
+  function renderRelease(item) {
+    const impact = item.opsImpactLevel || "awareness";
+    const windowLabel = WINDOW_LABEL[item.window] || item.window || "Later";
+    const statusLabel = RELEASE_STATUS_LABEL[item.status] || item.status || "Draft";
+    return (
+      "<article class='issue issue--release' id='" +
+      escapeHtml(item.id || "") +
+      "'>" +
+      "<div class='issue__head'>" +
+      "<div class='issue__toggle'>" +
+      "<span class='badge badge--impact-" +
+      escapeHtml(impact) +
+      "'>" +
+      escapeHtml(IMPACT_LABEL[impact] || impact) +
+      "</span>" +
+      "<span><p class='issue__title'>" +
+      escapeHtml(item.title) +
+      "</p><p class='issue__meta'>" +
+      escapeHtml(windowLabel) +
+      " · " +
+      escapeHtml(statusLabel) +
+      "</p></span>" +
+      "</div>" +
+      jiraLink(item, "No ticket") +
+      "</div>" +
+      (item.opsImpact
+        ? "<div class='issue__body'><p>" + escapeHtml(item.opsImpact) + "</p></div>"
+        : "") +
+      "</article>"
+    );
+  }
+
+  function renderReleases() {
+    const board = document.getElementById("release-board");
+    const empty = document.getElementById("release-empty");
+    if (!board || !empty) return;
+    const releases = Array.isArray(data.releases) ? data.releases : [];
+    board.innerHTML = releases.map(renderRelease).join("");
+    empty.hidden = releases.length > 0;
+  }
+
   function applyHash() {
     const hash = (location.hash || "#escalations").replace("#", "");
     if (hash === "releases") {
@@ -267,6 +335,8 @@
     renderMasthead();
     renderTabs();
     renderIssues();
+    renderReleaseBanner();
+    renderReleases();
   }
 
   document.addEventListener("click", function (event) {

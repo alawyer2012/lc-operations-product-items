@@ -2,13 +2,13 @@
 
 Weekly GitHub Page for Leasing Center operations: what is escalated right now, and what is releasing that will hit the floor.
 
-This is a **snapshot**, not live Jira. Product updates it once a week. Operations (Cynthia) is the partner of record for the outstanding-issue list.
+This is a **weekly snapshot** for escalations and floor-impact notes. The What’s Releasing tab also links out to the live Jira dashboard. Product updates this page once a week. Operations (Cynthia) is the partner of record for the outstanding-issue list.
 
 ## What is on the board
 
 **Escalations** — current ops complaints and Jira tickets, with severity, status, ops impact, workaround, and a named next action.
 
-**What’s releasing** — upcoming changes scored by floor impact:
+**What’s releasing** — banner at the top opens the live [Jira What’s Releasing dashboard](https://entrata.atlassian.net/jira/dashboards/16707). Floor-impact notes from `releases` in `data/dashboard.js` still list below it:
 
 - **None** — no agent-facing change
 - **Awareness** — agents should know it shipped

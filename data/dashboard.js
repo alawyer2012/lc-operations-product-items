@@ -16,12 +16,13 @@ window.DASHBOARD = {
     product: "Leasing Center",
     owner: "Product",
     opsPartner: "Cynthia, Operations",
-    lastUpdated: "2026-08-28",
-    weekOf: "2026-08-25",
-    nextReview: "2026-09-02",
+    lastUpdated: "2026-09-02",
+    weekOf: "2026-09-01",
+    nextReview: "2026-09-09",
     slackChannel: "#askvoip",
+    jiraReleasingDashboardUrl: "https://entrata.atlassian.net/jira/dashboards/16707",
     briefingNote:
-      "Added Interaction Tracker — Call Review type error ahead of today’s ops follow-up. Screenshots are still a placeholder. Two items still need tickets from earlier: TMLP calculator and guest-card auto-populate.",
+      "Added a placeholder for QA surveys assigned to the wrong call type from today’s ops meeting. Still need a repro and a ticket. Two items still need tickets from earlier: TMLP calculator and guest-card auto-populate.",
   },
 
   issues: [
@@ -146,17 +147,45 @@ window.DASHBOARD = {
         },
       ],
     },
+    {
+      id: "qa-surveys-wrong-call-type",
+      title: "QA surveys assigned to the wrong call type",
+      area: "QA surveys",
+      severity: "p2",
+      status: "waiting-on-ticket",
+      jiraKey: "",
+      jiraUrl: "",
+      openedOn: "2026-08-28",
+      lastUpdate: "2026-08-28",
+      source: "Ops meeting",
+      opsImpact:
+        "Agents get scored against the wrong survey. Coaching and QA numbers drift from the call that actually happened.",
+      workaround: "Unconfirmed — capture what QA / ops is doing when a survey lands on the wrong type.",
+      nextAction: "Get examples from ops (wrong type vs. expected type) and open Jira.",
+      nextActionOwner: "Product + Ops",
+      latestNote:
+        "Placeholder from today’s ops meeting. No ticket yet. Need call examples and which types are mixing.",
+    },
   ],
 
   releases: [],
 
   changelog: [
     {
+      date: "2026-09-02",
+      weekOf: "2026-09-01",
+      entries: [
+        "What’s Releasing tab now opens with a banner to the Jira What’s Releasing dashboard (16707).",
+        "Floor-impact items still land below the banner when we add them here.",
+      ],
+    },
+    {
       date: "2026-08-28",
       weekOf: "2026-08-25",
       entries: [
         "Added Interaction Tracker — Call Review type error for today’s ops follow-up.",
         "Attached Call Review screenshots (New Interaction menu + “No graded calls found in last 8 weeks”).",
+        "Added placeholder: QA surveys assigned to the wrong call type (waiting on ticket).",
       ],
     },
     {
