@@ -200,11 +200,6 @@
       "</span>" +
       "<span><p class='issue__title'>" +
       escapeHtml(issue.title) +
-      "</p><p class='issue__meta'>" +
-      escapeHtml(issue.area) +
-      " · " +
-      escapeHtml(issue.source) +
-      screenshotHint(issue) +
       "</p></span>" +
       "</button>" +
       "<div class='issue__pills'>" +
