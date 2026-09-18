@@ -22,7 +22,7 @@ window.DASHBOARD = {
     slackChannel: "#askvoip",
     jiraReleasingDashboardUrl: "https://entrata.atlassian.net/jira/dashboards/16707",
     briefingNote:
-      "Live P1 incident today: LC actions updating guest cards (DEV-336991) — data fix rolling out, root cause under investigation. Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type. All four go standard on Oct 6. Interaction Tracker Call Review error is now filed as DEV-338664. Guest-card auto-populate and notification-line transcriptions still need tickets.",
+      "Live P1 incident today: LC actions updating guest cards (DEV-336991) — data fix rolling out, root cause under investigation. Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type. All four go standard on Oct 6. Two new tickets filed: Interaction Tracker Call Review error (DEV-338664) and notification-line transcriptions (DEV-331433). Guest-card auto-populate is the only remaining item without a ticket.",
   },
 
   issues: [
@@ -124,18 +124,18 @@ window.DASHBOARD = {
       title: "Notification line transcriptions and summaries",
       area: "Call transcription",
       severity: "p2",
-      status: "waiting-on-ticket",
-      jiraKey: "",
-      jiraUrl: "",
+      status: "open",
+      jiraKey: "DEV-331433",
+      jiraUrl: "https://entrata.atlassian.net/browse/DEV-331433",
       openedOn: "2026-08-27",
-      lastUpdate: "2026-08-27",
+      lastUpdate: "2026-09-18",
       source: "ask channel",
       opsImpact:
         "Notification-line calls may not get a usable transcription or summary. Agents lose the write-up they rely on after the call.",
-      workaround: "Unconfirmed — pull the current floor workaround from the ask channel.",
-      nextAction: "Check the ask channel today for the latest complaint, then open or attach a Jira ticket.",
-      nextActionOwner: "Product",
-      latestNote: "On today’s list. Details still live in the ask channel — not on this board yet.",
+      workaround: "Awaiting eng guidance. Continue capturing repro examples from the ask channel while the ticket is triaged.",
+      nextAction: "Engineering to triage DEV-331433 and confirm scope of affected notification-line calls.",
+      nextActionOwner: "Product + Eng",
+      latestNote: "Ticket filed as DEV-331433 (Sept 18). Repro examples still landing in the ask channel — attach them to the ticket as they come in.",
     },
     {
       id: "interaction-tracker-call-review-type-error",
@@ -198,8 +198,9 @@ window.DASHBOARD = {
         "TMLP calculator (DEV-331087), holiday hours (DEV-331205), and office hours customer text (DEV-311114) all shipped on rapid — standard release Oct 6. Moved all three to Monitoring.",
         "QA surveys wrong-call-type also shipped on rapid (spanned multiple tickets, nearing resolution). Moved to P3 Monitoring — standard release Oct 6.",
         "Filed Interaction Tracker — Call Review type error as DEV-338664.",
+        "Notification-line transcriptions now tracked as DEV-331433 (Sept 18). Flipped to Open.",
         "Swapped office-hours ticket of record from DEV-245856 to DEV-311114.",
-        "Still no ticket for: guest-card auto-populate and notification-line transcriptions.",
+        "Still no ticket for: guest-card auto-populate.",
       ],
     },
     {
