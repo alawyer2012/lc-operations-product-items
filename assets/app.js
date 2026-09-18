@@ -181,7 +181,6 @@
 
   function renderIssue(issue) {
     const open = !!state.openIds[issue.id];
-    const age = daysBetween(issue.openedOn);
     return (
       "<article class='issue issue--" +
       escapeHtml(issue.severity) +
@@ -208,6 +207,7 @@
       screenshotHint(issue) +
       "</p></span>" +
       "</button>" +
+      "<div class='issue__pills'>" +
       jiraLink(issue, "No ticket") +
       "<button type='button' class='issue__toggle issue__toggle--end' tabindex='-1' data-toggle='" +
       escapeHtml(issue.id) +
@@ -217,10 +217,8 @@
       "'>" +
       escapeHtml(STATUS_LABEL[issue.status] || issue.status) +
       "</span>" +
-      "<span class='issue__age'>" +
-      (age === 0 ? "Opened this week" : age + " days on the board") +
-      "</span>" +
       "</button>" +
+      "</div>" +
       "</div>" +
       (open
         ? "<div class='issue__body'><div class='issue__grid'>" +

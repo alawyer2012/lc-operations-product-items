@@ -207,10 +207,17 @@ h1 {
 
 .issue__head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 16px 20px;
   align-items: center;
   padding: 18px 22px;
+}
+
+.issue__pills {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
 }
 
 .issue__toggle {
@@ -315,13 +322,6 @@ h1 {
   color: var(--ink-soft);
   background: rgba(255, 255, 255, 0.55);
   font-weight: 700;
-}
-
-.issue__age {
-  color: var(--ink-soft);
-  font-size: 13px;
-  font-weight: 700;
-  text-align: right;
 }
 
 .issue__body {
@@ -570,8 +570,7 @@ code {
     margin-top: 8px;
   }
 
-  .masthead__meta,
-  .issue__age {
+  .masthead__meta {
     text-align: left;
     margin-top: 12px;
     width: fit-content;
@@ -582,6 +581,12 @@ code {
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
+  }
+
+  .issue__pills {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 8px;
   }
 
   .issue__jira {
