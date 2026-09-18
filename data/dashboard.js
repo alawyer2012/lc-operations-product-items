@@ -22,7 +22,7 @@ window.DASHBOARD = {
     slackChannel: "#askvoip",
     jiraReleasingDashboardUrl: "https://entrata.atlassian.net/jira/dashboards/16707",
     briefingNote:
-      "Live P1 incident today: LC actions updating guest cards (DEV-336991) — data fix rolling out, root cause under investigation. Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type. All four go standard on Oct 6. Two new tickets filed today: Interaction Tracker Call Review error (DEV-338664) and notification-line transcriptions (DEV-331433). Every item on the board now has a ticket.",
+      "Live P1 incident today: LC actions updating guest cards (DEV-336991) — data fix rolling out, root cause under investigation. Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type. All four go standard on Oct 6. Three new tickets filed today: Interaction Tracker Call Review error (DEV-338664), notification-line transcriptions (DEV-331433), and Call Cap email summary/trending text (DEV-338680). Every item on the board has a ticket.",
   },
 
   issues: [
@@ -149,6 +149,25 @@ window.DASHBOARD = {
       ],
     },
     {
+      id: "call-cap-email-summary-trending-text",
+      title: "Call Cap Email Summary/Trending Text",
+      area: "Emails",
+      severity: "p3",
+      status: "open",
+      jiraKey: "DEV-338680",
+      jiraUrl: "https://entrata.atlassian.net/browse/DEV-338680",
+      openedOn: "2026-09-18",
+      lastUpdate: "2026-09-18",
+      source: "Known (PM)",
+      opsImpact:
+        "Details pending. Filed today for tracking on the LC operations board.",
+      workaround: "N/A yet — awaiting eng triage.",
+      nextAction: "Engineering to triage DEV-338680. Product to add repro/impact detail on the next update.",
+      nextActionOwner: "Product + Eng",
+      latestNote:
+        "Ticket filed today. Ops impact, repro, and workaround detail to follow on the next weekly pass.",
+    },
+    {
       id: "qa-surveys-wrong-call-type",
       title: "QA surveys assigned to the wrong call type",
       area: "QA surveys",
@@ -181,6 +200,7 @@ window.DASHBOARD = {
         "QA surveys wrong-call-type also shipped on rapid (spanned multiple tickets, nearing resolution). Moved to P3 Monitoring — standard release Oct 6.",
         "Filed Interaction Tracker — Call Review type error as DEV-338664.",
         "Notification-line transcriptions now tracked as DEV-331433 (Sept 18). Flipped to Open.",
+        "Added P3 Call Cap Email Summary/Trending Text as DEV-338680.",
         "Swapped office-hours ticket of record from DEV-245856 to DEV-311114.",
         "Removed the guest-card auto-populate item from the board.",
       ],
