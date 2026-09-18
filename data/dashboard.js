@@ -22,7 +22,7 @@ window.DASHBOARD = {
     slackChannel: "#askvoip",
     jiraReleasingDashboardUrl: "https://entrata.atlassian.net/jira/dashboards/16707",
     briefingNote:
-      "Three ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), and office hours customer text (DEV-311114). All three go standard on Oct 6. Interaction Tracker Call Review error is now filed as DEV-338664. Guest-card auto-populate, notification-line transcriptions, and QA surveys wrong-call-type still need tickets.",
+      "Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type (spanned multiple tickets, nearing resolution). All four go standard on Oct 6. Interaction Tracker Call Review error is now filed as DEV-338664. Guest-card auto-populate and notification-line transcriptions still need tickets.",
   },
 
   issues: [
@@ -151,20 +151,20 @@ window.DASHBOARD = {
       id: "qa-surveys-wrong-call-type",
       title: "QA surveys assigned to the wrong call type",
       area: "QA surveys",
-      severity: "p2",
-      status: "waiting-on-ticket",
+      severity: "p3",
+      status: "monitoring",
       jiraKey: "",
       jiraUrl: "",
       openedOn: "2026-08-28",
-      lastUpdate: "2026-08-28",
+      lastUpdate: "2026-09-18",
       source: "Ops meeting",
       opsImpact:
-        "Agents get scored against the wrong survey. Coaching and QA numbers drift from the call that actually happened.",
-      workaround: "Unconfirmed — capture what QA / ops is doing when a survey lands on the wrong type.",
-      nextAction: "Get examples from ops (wrong type vs. expected type) and open Jira.",
+        "Fixed on rapid. Standard clients can still see QA surveys land on the wrong call type until Oct 6, so coaching and QA numbers may drift from the call that actually happened.",
+      workaround: "Rapid clients: no action needed. Standard clients: QA to sanity-check surveys against call type until Oct 6.",
+      nextAction: "Monitor through the Oct 6 standard release. Close on the board after Oct 6 lands.",
       nextActionOwner: "Product + Ops",
       latestNote:
-        "Placeholder from today’s ops meeting. No ticket yet. Need call examples and which types are mixing.",
+        "Fix spanned multiple tickets and is nearing resolution. Shipped on rapid already; standard release Oct 6.",
     },
   ],
 
@@ -176,9 +176,10 @@ window.DASHBOARD = {
       weekOf: "2026-09-15",
       entries: [
         "TMLP calculator (DEV-331087), holiday hours (DEV-331205), and office hours customer text (DEV-311114) all shipped on rapid — standard release Oct 6. Moved all three to Monitoring.",
+        "QA surveys wrong-call-type also shipped on rapid (spanned multiple tickets, nearing resolution). Moved to P3 Monitoring — standard release Oct 6.",
         "Filed Interaction Tracker — Call Review type error as DEV-338664.",
         "Swapped office-hours ticket of record from DEV-245856 to DEV-311114.",
-        "Still no ticket for: guest-card auto-populate, notification-line transcriptions, QA surveys wrong-call-type.",
+        "Still no ticket for: guest-card auto-populate and notification-line transcriptions.",
       ],
     },
     {
