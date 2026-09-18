@@ -22,7 +22,7 @@ window.DASHBOARD = {
     slackChannel: "#askvoip",
     jiraReleasingDashboardUrl: "https://entrata.atlassian.net/jira/dashboards/16707",
     briefingNote:
-      "Live P1 incident today: LC actions updating guest cards (DEV-336991) — data fix rolling out, root cause under investigation. Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type. All four go standard on Oct 6. Two new tickets filed: Interaction Tracker Call Review error (DEV-338664) and notification-line transcriptions (DEV-331433). Guest-card auto-populate is the only remaining item without a ticket.",
+      "Live P1 incident today: LC actions updating guest cards (DEV-336991) — data fix rolling out, root cause under investigation. Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type. All four go standard on Oct 6. Two new tickets filed today: Interaction Tracker Call Review error (DEV-338664) and notification-line transcriptions (DEV-331433). Every item on the board now has a ticket.",
   },
 
   issues: [
@@ -81,24 +81,6 @@ window.DASHBOARD = {
       nextAction: "Monitor through the Oct 6 standard release. Close on the board after Oct 6 lands.",
       nextActionOwner: "Product + Eng",
       latestNote: "Released on rapid Sept 17. Standard release Oct 6.",
-    },
-    {
-      id: "guest-card-autopopulate",
-      title: "LC auto-populate overrides guest card information",
-      area: "Guest cards",
-      severity: "p2",
-      status: "open",
-      jiraKey: "",
-      jiraUrl: "",
-      openedOn: "2026-08-26",
-      lastUpdate: "2026-08-26",
-      source: "Known (PM)",
-      opsImpact:
-        "Agent-entered guest card fields get overwritten. Repeat contacts and later follow-up run on incomplete or wrong prospect data — an ongoing floor complaint, not a one-off.",
-      workaround: "Unconfirmed. Until we have a ticket, treat this as a known data-loss risk and document when it happens.",
-      nextAction: "Write a tight repro (when it overrides, which fields) and open Jira — or confirm expected behavior and train to it.",
-      nextActionOwner: "Product + Ops",
-      latestNote: "No ticket yet. Needs a decision: defect vs. intended auto-populate that ops should work around.",
     },
     {
       id: "office-hours-customer-text",
@@ -200,7 +182,7 @@ window.DASHBOARD = {
         "Filed Interaction Tracker — Call Review type error as DEV-338664.",
         "Notification-line transcriptions now tracked as DEV-331433 (Sept 18). Flipped to Open.",
         "Swapped office-hours ticket of record from DEV-245856 to DEV-311114.",
-        "Still no ticket for: guest-card auto-populate.",
+        "Removed the guest-card auto-populate item from the board.",
       ],
     },
     {
