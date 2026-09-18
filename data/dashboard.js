@@ -22,10 +22,29 @@ window.DASHBOARD = {
     slackChannel: "#askvoip",
     jiraReleasingDashboardUrl: "https://entrata.atlassian.net/jira/dashboards/16707",
     briefingNote:
-      "Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type (spanned multiple tickets, nearing resolution). All four go standard on Oct 6. Interaction Tracker Call Review error is now filed as DEV-338664. Guest-card auto-populate and notification-line transcriptions still need tickets.",
+      "Live P1 incident today: LC actions updating guest cards (DEV-336991) — data fix rolling out, root cause under investigation. Four ship wins on rapid this cycle: TMLP calculator (DEV-331087), holiday hours (DEV-331205), office hours customer text (DEV-311114), and QA surveys wrong-call-type. All four go standard on Oct 6. Interaction Tracker Call Review error is now filed as DEV-338664. Guest-card auto-populate and notification-line transcriptions still need tickets.",
   },
 
   issues: [
+    {
+      id: "lc-actions-updating-guest-cards",
+      title: "LC actions updating guest cards",
+      area: "Guest cards",
+      severity: "p1",
+      status: "in-progress",
+      jiraKey: "DEV-336991",
+      jiraUrl: "https://entrata.atlassian.net/browse/DEV-336991",
+      openedOn: "2026-09-18",
+      lastUpdate: "2026-09-18",
+      source: "Incident today",
+      opsImpact:
+        "LC agent actions are updating guest card data. Live incident today. Assume guest card fields on affected records may be modified until the data fix lands and root cause is confirmed.",
+      workaround: "Awaiting eng guidance. Data fix is rolling out to correct affected records.",
+      nextAction: "Eng: land the data fix and identify root cause. Product: confirm scope of affected guest cards and share status back to ops.",
+      nextActionOwner: "Product + Eng",
+      latestNote:
+        "Live incident opened today. DEV-336991 is the placeholder ticket. Data fix in flight; root cause under investigation. Will update as the fix rolls out and the RCA lands.",
+    },
     {
       id: "tmlp-occupant-pricing",
       title: "TMLP calculator doubles price when occupants are added",
@@ -175,6 +194,7 @@ window.DASHBOARD = {
       date: "2026-09-18",
       weekOf: "2026-09-15",
       entries: [
+        "Added P1 live incident: LC actions updating guest cards (DEV-336991). Data fix rolling out, root cause under investigation.",
         "TMLP calculator (DEV-331087), holiday hours (DEV-331205), and office hours customer text (DEV-311114) all shipped on rapid — standard release Oct 6. Moved all three to Monitoring.",
         "QA surveys wrong-call-type also shipped on rapid (spanned multiple tickets, nearing resolution). Moved to P3 Monitoring — standard release Oct 6.",
         "Filed Interaction Tracker — Call Review type error as DEV-338664.",
