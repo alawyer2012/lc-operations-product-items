@@ -4,7 +4,11 @@
  * Ritual: edit this file → commit → push. GitHub Pages republishes in a minute or two.
  *
  * Issue status:     open | in-progress | waiting-on-ticket | waiting-on-ops | monitoring | resolved
+ *                   (kept for internal filtering — resolved items are hidden)
  * Issue severity:   p1 | p2 | p3 | p4
+ * Release dates:    rapidDate / standardDate — ISO "YYYY-MM-DD". Empty string ("")
+ *                   renders as "TBD" on the card. Pulled from the associated Jira
+ *                   ticket's release; refresh when tickets are scheduled or shipped.
  * Release window:   this-week | next | later | shipped
  * Release status:   draft | scheduled | in-qa | at-risk | shipped
  * Ops impact level: none | awareness | training | workflow-change
@@ -34,6 +38,8 @@ window.DASHBOARD = {
       status: "in-progress",
       jiraKey: "DEV-336991",
       jiraUrl: "https://entrata.atlassian.net/browse/DEV-336991",
+      rapidDate: "",
+      standardDate: "",
       openedOn: "2026-09-18",
       lastUpdate: "2026-09-18",
       source: "Incident today",
@@ -53,6 +59,8 @@ window.DASHBOARD = {
       status: "monitoring",
       jiraKey: "DEV-331087",
       jiraUrl: "https://entrata.atlassian.net/browse/DEV-331087",
+      rapidDate: "",
+      standardDate: "2026-10-06",
       openedOn: "2026-08-26",
       lastUpdate: "2026-09-18",
       source: "#askvoip",
@@ -72,6 +80,8 @@ window.DASHBOARD = {
       status: "monitoring",
       jiraKey: "DEV-331205",
       jiraUrl: "https://entrata.atlassian.net/browse/DEV-331205",
+      rapidDate: "2026-09-17",
+      standardDate: "2026-10-06",
       openedOn: "2026-08-26",
       lastUpdate: "2026-09-18",
       source: "Known (PM)",
@@ -90,6 +100,8 @@ window.DASHBOARD = {
       status: "monitoring",
       jiraKey: "DEV-311114",
       jiraUrl: "https://entrata.atlassian.net/browse/DEV-311114",
+      rapidDate: "2026-08-04",
+      standardDate: "2026-10-06",
       openedOn: "2026-08-26",
       lastUpdate: "2026-09-18",
       source: "Known (PM)",
@@ -109,6 +121,8 @@ window.DASHBOARD = {
       status: "open",
       jiraKey: "DEV-331433",
       jiraUrl: "https://entrata.atlassian.net/browse/DEV-331433",
+      rapidDate: "",
+      standardDate: "",
       openedOn: "2026-08-27",
       lastUpdate: "2026-09-18",
       source: "ask channel",
@@ -127,6 +141,8 @@ window.DASHBOARD = {
       status: "open",
       jiraKey: "DEV-338664",
       jiraUrl: "https://entrata.atlassian.net/browse/DEV-338664",
+      rapidDate: "",
+      standardDate: "",
       openedOn: "2026-08-28",
       lastUpdate: "2026-09-18",
       source: "Known (PM)",
@@ -156,6 +172,8 @@ window.DASHBOARD = {
       status: "open",
       jiraKey: "DEV-338680",
       jiraUrl: "https://entrata.atlassian.net/browse/DEV-338680",
+      rapidDate: "",
+      standardDate: "",
       openedOn: "2026-09-18",
       lastUpdate: "2026-09-18",
       source: "Known (PM)",
@@ -175,6 +193,8 @@ window.DASHBOARD = {
       status: "monitoring",
       jiraKey: "",
       jiraUrl: "",
+      rapidDate: "",
+      standardDate: "2026-10-06",
       openedOn: "2026-08-28",
       lastUpdate: "2026-09-18",
       source: "Ops meeting",
@@ -194,6 +214,8 @@ window.DASHBOARD = {
       status: "open",
       jiraKey: "",
       jiraUrl: "",
+      rapidDate: "",
+      standardDate: "",
       openedOn: "2026-09-25",
       lastUpdate: "2026-09-25",
       source: "Product (PM)",

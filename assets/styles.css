@@ -290,6 +290,45 @@ h1 {
   background: rgba(255, 255, 255, 0.7);
 }
 
+.badge--date {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 10px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.badge--date .badge__label {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 10.5px;
+  opacity: 0.75;
+}
+
+.badge--date .badge__value {
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.badge--date-past {
+  color: #1f5f47;
+  background: rgba(42, 157, 143, 0.18);
+}
+
+.badge--date-future {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.badge--date-tbd {
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.55);
+}
+
 .issue__title {
   margin: 0 0 4px;
   font-size: 18px;

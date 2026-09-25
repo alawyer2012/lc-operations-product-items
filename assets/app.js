@@ -127,6 +127,26 @@
     );
   }
 
+  function releaseDatePill(label, iso) {
+    const today = parseDate(data.meta.lastUpdated) || new Date();
+    const date = parseDate(iso);
+    let stateClass = "badge--date-tbd";
+    let value = "TBD";
+    if (date) {
+      value = formatDate(iso);
+      stateClass = date <= today ? "badge--date-past" : "badge--date-future";
+    }
+    return (
+      "<span class='badge badge--date " +
+      stateClass +
+      "'><span class='badge__label'>" +
+      escapeHtml(label) +
+      "</span> <span class='badge__value'>" +
+      escapeHtml(value) +
+      "</span></span>"
+    );
+  }
+
   function screenshotHint(issue) {
     if (!Array.isArray(issue.screenshots)) return "";
     const pending = !issue.screenshots.length || issue.screenshots.some(function (shot) {
@@ -204,15 +224,8 @@
       "</button>" +
       "<div class='issue__pills'>" +
       jiraLink(issue, "No ticket") +
-      "<button type='button' class='issue__toggle issue__toggle--end' tabindex='-1' data-toggle='" +
-      escapeHtml(issue.id) +
-      "'>" +
-      "<span class='badge " +
-      (STATUS_BADGE[issue.status] || "badge--status") +
-      "'>" +
-      escapeHtml(STATUS_LABEL[issue.status] || issue.status) +
-      "</span>" +
-      "</button>" +
+      releaseDatePill("Rapid", issue.rapidDate) +
+      releaseDatePill("Standard", issue.standardDate) +
       "</div>" +
       "</div>" +
       (open
