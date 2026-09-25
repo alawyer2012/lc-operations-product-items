@@ -186,11 +186,37 @@ window.DASHBOARD = {
       latestNote:
         "Fix spanned multiple tickets and is nearing resolution. Shipped on rapid already; standard release Oct 6.",
     },
+    {
+      id: "property-termination-office-to-lead-number",
+      title: "Property termination: office → lead number conversion logic",
+      area: "Phone numbers",
+      severity: "p3",
+      status: "open",
+      jiraKey: "",
+      jiraUrl: "",
+      openedOn: "2026-09-25",
+      lastUpdate: "2026-09-25",
+      source: "Product (PM)",
+      opsImpact:
+        "Placeholder. When a property terminates, today's logic converts the office-type number into a lead-type number. We need to revisit whether that's still the right behavior and what ops actually wants to happen to those numbers on termination.",
+      workaround: "TBD — no change to current behavior yet. Flagged so it doesn't get lost while we align with ops.",
+      nextAction: "Austin to talk with Operations on how they'd propose to handle office → lead conversion (or an alternative) at property termination, then fill in this item with details, ticket, and a recommendation.",
+      nextActionOwner: "Product + Ops",
+      latestNote:
+        "Placeholder added 2026-09-25 so we don't lose the thread. Details, ticket, and recommendation to follow after the ops conversation.",
+    },
   ],
 
   releases: [],
 
   changelog: [
+    {
+      date: "2026-09-25",
+      weekOf: "2026-09-22",
+      entries: [
+        "Added P3 placeholder: Property termination — office → lead number conversion logic. Awaiting ops input before we fill in details and file a ticket.",
+      ],
+    },
     {
       date: "2026-09-18",
       weekOf: "2026-09-15",
